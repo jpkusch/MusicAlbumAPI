@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import dev.four.daos.AlbumDAO;
 import dev.four.entities.Album;
 import dev.four.services.AlbumService;
+import dev.four.services.AlbumServiceImpl;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -21,16 +22,16 @@ import org.junit.jupiter.api.Order;
 @TestMethodOrder(OrderAnnotation.class)
 class AlbumServiceTests {
 	
-	private AlbumService aserv = null;
+	private static AlbumService aserv = null;
 	
-	Album makeAlbum;
-	Album fakeAlbum;
-	Album updatedAlbum;
-	Album badAlbum;
-	List<Album> allAlbums;
+	static Album makeAlbum;
+	static Album fakeAlbum;
+	static Album updatedAlbum;
+	static Album badAlbum;
+	static List<Album> allAlbums;
 	
 	@BeforeAll
-	void setUpMocks() {
+	static void setUpMocks() {
 		List<String> songs = new ArrayList<String>();
 		songs.add("Come Together");
 		songs.add("Something");
@@ -62,6 +63,8 @@ class AlbumServiceTests {
 		
 		Mockito.when(adao.deleteAlbumById(1)).thenReturn(true);
 		Mockito.when(adao.deleteAlbumById(70)).thenReturn(false);
+		
+		aserv = new AlbumServiceImpl(adao);
 	}
 	
 	@Test

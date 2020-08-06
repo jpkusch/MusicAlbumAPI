@@ -4,13 +4,17 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import dev.four.daos.AlbumDAO;
+import dev.four.daos.AlbumDAOImpl;
 import dev.four.entities.Album;
 import dev.four.services.AlbumService;
+import dev.four.services.AlbumServiceImpl;
 import io.javalin.http.Handler;
 
 public class AlbumController {
 	
-	private static AlbumService aserv;
+	private static AlbumDAO adao = AlbumDAOImpl.getAlbumDAO();
+	private static AlbumService aserv = new AlbumServiceImpl(adao);
 	
 	private static Gson gson = new Gson();
 	
