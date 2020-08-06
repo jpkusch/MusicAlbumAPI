@@ -21,8 +21,8 @@ public class AlbumServiceImpl implements AlbumService{
 		return adao.createAlbum(album);
 	}
 
-	public Album getAlbumById(Album album) {
-		return adao.getAlbumById(album);
+	public Album getAlbumById(int id) {
+		return adao.getAlbumById(id);
 	}
 
 	public List<Album> getAllAlbums() {
